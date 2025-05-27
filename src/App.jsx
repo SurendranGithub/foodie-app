@@ -8,6 +8,7 @@ import LayoutWithNavbar from './components/LayoutWithNavbar'
 import Products from './pages/Products'
 import Profile from './pages/Profile'
 import ProtectedRoute from './components/ProtectedRoute'
+import ProductDetail from './pages/ProductDetail'
 
 const App = () => {
     return (
@@ -23,6 +24,14 @@ const App = () => {
                         element={
                             <ProtectedRoute>
                                 <Products />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/products/:id"
+                        element={
+                            <ProtectedRoute>
+                                <ProductDetail />
                             </ProtectedRoute>
                         }
                     />

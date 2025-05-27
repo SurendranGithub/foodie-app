@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Toaster, toast } from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 import { useFormik } from 'formik';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';

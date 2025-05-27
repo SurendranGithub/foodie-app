@@ -1,14 +1,23 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const Profile = () => {
     const { currentUser, logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
+    // const handleLogout = () => {
+    //     logout();
+    //     navigate('/');
+    // };
+
     const handleLogout = () => {
         logout();
-        navigate('/');
+        toast.success('Logged out successfully!');
+        setTimeout(() => {
+            navigate('/', { replace: true });
+        }, 0);
     };
 
     return (

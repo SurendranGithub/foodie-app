@@ -13,7 +13,7 @@ const Navbar = () => {
     const { currentUser } = useContext(AuthContext);
 
     return (
-        <nav className='m-3 relative flex-between py-5 px-10'>
+        <nav className='md:mx-15 relative flex-between px-6 py-10'>
             {/* Logo */}
             <div className='flex-center gap-1'>
                 <h3 className='text-3xl italic text-semibold text-gray-700'>foodie</h3>

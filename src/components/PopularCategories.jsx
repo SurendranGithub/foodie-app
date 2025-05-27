@@ -1,46 +1,50 @@
 import React from 'react';
+import { UtensilsCrossed, Pizza, CakeSlice, Drumstick } from 'lucide-react';
 
 const categories = [
     {
-        name: "Breakfast",
-        image: "https://res.cloudinary.com/dkks5xf5v/image/upload/v1748237552/pexels-janetrangdoan-769969_ouizef.jpg", // Unsplash
+        icon: <UtensilsCrossed className="w-8 h-8 text-red-500" />,
+        title: 'South Indian',
+        description: 'Enjoy traditional flavors of dosa, idli & more.',
     },
     {
-        name: "Lunch",
-        image: "https://res.cloudinary.com/dkks5xf5v/image/upload/v1748237889/lunch_oqn9ss.jpg",
+        icon: <Pizza className="w-8 h-8 text-red-500" />,
+        title: 'Italian',
+        description: 'Pizza, pasta, and cheesy indulgence at its best.',
     },
     {
-        name: "Desserts",
-        image: "https://res.cloudinary.com/dkks5xf5v/image/upload/v1748237979/pexels-ash-craig-122861-376464_upfdtm.jpg",
+        icon: <CakeSlice className="w-8 h-8 text-red-500" />,
+        title: 'Desserts',
+        description: 'Satisfy your sweet tooth with cakes & pastries.',
     },
     {
-        name: "Drinks",
-        image: "https://res.cloudinary.com/dkks5xf5v/image/upload/v1748238067/drinks_omywqx.jpg",
-    },
-    {
-        name: "Snacks",
-        image: "https://res.cloudinary.com/dkks5xf5v/image/upload/v1748238156/snacks_f7dlee.jpg",
-    },
-    {
-        name: "Pizza",
-        image: "https://res.cloudinary.com/dkks5xf5v/image/upload/v1748238270/pizza_drao8o.jpg",
+        icon: <Drumstick className="w-8 h-8 text-red-500" />,
+        title: 'Non-Veg',
+        description: 'Juicy chicken, spicy kebabs, and more delights.',
     },
 ];
 
 const PopularCategories = () => {
     return (
-        <section className="py-12 px-4 max-w-7xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-8">Popular Categories</h2>
-            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-                {categories.map((cat, index) => (
+        <section className="px-6 py-12 max-w-7xl mx-auto text-center">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-800">
+                Popular Categories
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto mb-10">
+                Discover your favorite food categories. We've got something delicious for everyone.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {categories.map((cat, idx) => (
                     <div
-                        key={index}
-                        className="rounded-xl overflow-hidden shadow hover:scale-105 cursor-pointer transition-transform bg-white"
+                        key={idx}
+                        className="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition border border-transparent hover:border-red-500 cursor-pointer"
                     >
-                        <img src={cat.image} alt={cat.name} className="h-48 w-full object-cover" />
-                        <div className="p-4 text-center">
-                            <h3 className="text-xl font-semibold">{cat.name}</h3>
+                        <div className="flex items-center justify-center mb-4">
+                            {cat.icon}
                         </div>
+                        <h3 className="text-xl font-semibold mb-2 text-gray-800">{cat.title}</h3>
+                        <p className="text-gray-500 text-sm">{cat.description}</p>
                     </div>
                 ))}
             </div>
