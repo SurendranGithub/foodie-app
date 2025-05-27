@@ -1,10 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import { Toaster, toast } from 'react-hot-toast';
 import { useFormik } from 'formik';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 import { signupValidate } from '../helper/validate';
 
 const Signup = () => {
+
+    const navigate = useNavigate();
+
+    const { login } = useContext(AuthContext);
 
     const formik = useFormik({
         initialValues: {
@@ -16,7 +22,26 @@ const Signup = () => {
         validateOnBlur: false,
         validateOnChange: false,
         onSubmit: async (values) => {
-            console.log('Login values:', values);
+            console.log('Signup values:', values);
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            const isExistingUser = users.find((user) => user.email === values.email);
+
+            if (isExistingUser) {
+                toast.error('User already exists with this email.');
+                return;
+            }
+
+            const updatedUsers = [...users, values];
+
+            localStorage.setItem('users', JSON.stringify(updatedUsers));
+
+            login(values)
+
+            toast.success('Signup successful!');
+
+            navigate('/products')
         }
     });
 

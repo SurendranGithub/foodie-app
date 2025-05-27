@@ -1,11 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import { Toaster, toast } from 'react-hot-toast';
 import { useFormik } from 'formik';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 import { loginValidate } from '../helper/validate';
 
 const Login = () => {
+
+    const navigate = useNavigate();
+
+    const { login } = useContext(AuthContext);
 
     const formik = useFormik({
         initialValues: {
@@ -17,6 +23,25 @@ const Login = () => {
         validateOnChange: false,
         onSubmit: async (values) => {
             console.log('Login values:', values);
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            const isValidUser = users.find((user) => user.email === values.email && user.password === values.password);
+
+            if (!isValidUser) {
+                toast.error('Invalid crendentials.');
+                return;
+            }
+
+            //save current user session
+            login(isValidUser)
+
+            toast.success('Login successful!');
+
+            //Navigate to products page
+            setTimeout(() => {
+                navigate('/products');
+            }, 1000);
         }
     });
 
