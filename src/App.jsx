@@ -9,6 +9,9 @@ import Products from './pages/Products'
 import Profile from './pages/Profile'
 import ProtectedRoute from './components/ProtectedRoute'
 import ProductDetail from './pages/ProductDetail'
+import Cart from './pages/Cart'
+import Services from './pages/Services'
+import Contact from './pages/Contact'
 
 const App = () => {
     return (
@@ -43,11 +46,21 @@ const App = () => {
                             </ProtectedRoute>
                         }
                     />
+                    <Route
+                        path="/cart"
+                        element={
+                            <ProtectedRoute>
+                                <Cart />
+                            </ProtectedRoute>
+                        }
+                    />
                 </Route>
 
                 {/* Routes without Navbar */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/contact" element={<Contact />} />
             </Routes>
         </Router>
     )

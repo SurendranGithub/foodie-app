@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Hamburger, Menu, X, User } from 'lucide-react';
+import { Hamburger, Menu, X, User, ShoppingCart } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
@@ -24,12 +24,17 @@ const Navbar = () => {
             <div className="hidden md:flex gap-6">
                 <Link to="/" className='link'>Home</Link>
                 <Link to="/products" className='link'>Menu</Link>
-                <Link to="/booking" className='link'>Services</Link>
-                <Link to="/pricing" className='link'>Contact</Link>
+                <Link to="/services" className='link'>Services</Link>
+                <Link to="/contact" className='link'>Contact</Link>
             </div>
 
             {/* Desktop Right Side */}
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center gap-4">
+                {currentUser && (
+                    <Link to="/cart">
+                        <ShoppingCart className="text-red-500 hover:text-red-600" />
+                    </Link>
+                )}
                 {currentUser ? (
                     <Link to="/profile">
                         <User className="text-red-500 hover:text-red-600" />
@@ -51,8 +56,19 @@ const Navbar = () => {
                 <div className="absolute top-full left-0 w-full bg-white p-5 flex flex-col gap-4 shadow-lg md:hidden z-50">
                     <Link to="/" className="text-gray-700 text-lg" onClick={() => setMenuOpen(false)}>Home</Link>
                     <Link to="/products" className="text-gray-700 text-lg" onClick={() => setMenuOpen(false)}>Menu</Link>
-                    <Link to="/booking" className="text-gray-700 text-lg" onClick={() => setMenuOpen(false)}>Booking</Link>
-                    <Link to="/pricing" className="text-gray-700 text-lg" onClick={() => setMenuOpen(false)}>Pricing</Link>
+                    <Link to="/services" className="text-gray-700 text-lg" onClick={() => setMenuOpen(false)}>Booking</Link>
+                    <Link to="/contact" className="text-gray-700 text-lg" onClick={() => setMenuOpen(false)}>Pricing</Link>
+                    {currentUser && (
+                        <button
+                            onClick={() => {
+                                setMenuOpen(false);
+                                navigate('/cart');
+                            }}
+                            className="flex items-center text-red-500 text-lg font-semibold gap-2"
+                        >
+                            <ShoppingCart className="w-5 h-5" /> Cart
+                        </button>
+                    )}
                     {currentUser ? (
                         <button
                             onClick={() => {

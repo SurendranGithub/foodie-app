@@ -7,11 +7,6 @@ const Profile = () => {
     const { currentUser, logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    // const handleLogout = () => {
-    //     logout();
-    //     navigate('/');
-    // };
-
     const handleLogout = () => {
         logout();
         toast.success('Logged out successfully!');

@@ -8,7 +8,7 @@ const CTA = () => {
                 <h2 className="text-3xl sm:text-4xl font-bold text-white">
                     Ready to Satisfy Your Cravings?
                 </h2>
-                <p className="text-gray-500 max-w-xl">
+                <p className="text-gray-200 max-w-xl">
                     Discover mouth-watering dishes delivered right to your doorstep. Start your food journey with us today!
                 </p>
                 <button className="bg-white text-red-500 text-base px-6 py-2 rounded-xl transition duration-200">
